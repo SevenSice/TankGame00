@@ -18,21 +18,22 @@ void ATankAIController::BeginPlay()
 	}
 }
 
+void ATankAIController::Tick(float DeltaTime)
+{
 
+}
 
-
-ATank* ATankAIController::GetControlledTank()
+ATank * ATankAIController::GetControlledTank()
 {
 	return Cast<ATank>(GetPawn());
 }
 
-ATank* ATankAIController::GetPlayerTank()
+ATank * ATankAIController::GetPlayerTank()
 {
 	ATank *PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
-	if (PlayerTank==nullptr)
+	if (PlayerTank == nullptr)
 	{
 		return nullptr;
 	}
 	return PlayerTank;
 }
-
