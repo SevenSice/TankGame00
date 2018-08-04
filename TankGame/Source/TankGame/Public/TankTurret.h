@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Engine/World.h"
 #include "CoreMinimal.h"
 #include "Components/StaticMeshComponent.h"
 #include "TankTurret.generated.h"
@@ -18,4 +19,5 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Setup")
 	float MaxDegreesPerSecond = 20.0f;
 
+	void MoveTurret(FVector AimDirection);
 };

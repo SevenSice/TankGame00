@@ -60,6 +60,13 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
 		0,
 		ESuggestProjVelocityTraceOption::DoNotTrace
 	);
-	UE_LOG(LogTemp, Warning, TEXT("Fire Vector : %s"),*FireVector.GetSafeNormal().ToString());
+	if (bHaveSolution)
+	{
+		//通知炮塔合炮管转向。
+		UE_LOG(LogTemp, Warning, TEXT("Fire Vector : %s"),*FireVector.GetSafeNormal().ToString());
+		Turrent->MoveTurret(FireVector.GetSafeNormal());
+		Barrel->MoveBarrel(FireVector.GetSafeNormal());
+	}
+	
 }
 

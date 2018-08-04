@@ -2,6 +2,20 @@
 
 #include "TankBarrel.h"
 
+void UTankBarrel::MoveBarrel(FVector AimDirection)
+{
+	FRotator CurrentRotation = GetForwardVector().Rotation();
+	FRotator AimRotation = AimDirection.Rotation();
 
+	float ChangePich = AimRotation.Pitch - CurrentRotation.Pitch;
 
+	float RelativeSpeed = FMath::Clamp<float>(ChangePich, -1, 1);
+	float RotationTickChange = RelativeSpeed * MaxDegreePerSecond*GetWorld()->DeltaTimeSeconds;
+	float NewRotationPich = RotationTickChange + CurrentRotation.Pitch;
 
+	//Limitation of pich
+	NewRotationPich = FMath::Clamp<float>(NewRotationPich, MinDegree, MaxDegree);
+
+	SetRelativeRotation(FRotator(NewRotationPich, 0, 0));
+
+}
