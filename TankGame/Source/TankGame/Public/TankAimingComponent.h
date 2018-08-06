@@ -12,6 +12,14 @@
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
 
+UENUM(BlueprintType)
+enum class EFiringState:uint8
+{
+	//射击状态的枚举类型
+	Reloading,
+	Aiming,
+	Locked
+};
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class TANKGAME_API UTankAimingComponent : public UActorComponent
@@ -45,10 +53,19 @@ public:
 	UTankTurret *Turrent = nullptr;
 
 	UPROPERTY(EditAnywhere, Category = "Setup")
+	float TankReloadTime = 3.0f;
+
+	UPROPERTY(EditAnywhere, Category = "Setup")
 	float LaunchSpeed = 10000.0f;
 
 	UPROPERTY(EditAnywhere, Category = "Setup")
 	TSubclassOf<AProjectile> ProjectileType;
 
+	UPROPERTY(BlueprintReadOnly)
+	//初始化射击状态
+	EFiringState FiringState = EFiringState::Aiming;
+
+private:
+	double LastFireTime = 0;
 	
 };

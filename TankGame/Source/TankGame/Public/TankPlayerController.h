@@ -22,9 +22,10 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
+
 	//获取控制的坦克
-	ATank * GetControlledTank();
-	//获取玩家控制的坦克
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	ATank *GetControlledTank();
 
 	//炮管转向目标
 	void AnimToTarget();
