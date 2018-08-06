@@ -6,6 +6,7 @@
 
 #include "TankTurret.h"
 #include "TankBarrel.h"
+#include "Projectile.h"
 #include "Kismet/GameplayStatics.h"
 
 #include "Components/ActorComponent.h"
@@ -34,13 +35,20 @@ public:
 
 	void AimAt(FVector HitLocation);
 
+	//¿ª»ð
+	UFUNCTION(BlueprintCallable,CateGory="GamePlay")
+	void Fire();
+
 	//ÅÚ¹Ü
 	UTankBarrel *Barrel = nullptr;
 	//ÅÚËþ
 	UTankTurret *Turrent = nullptr;
 
 	UPROPERTY(EditAnywhere, Category = "Setup")
-	float LaunchSpeed = 100000.0f;
+	float LaunchSpeed = 10000.0f;
+
+	UPROPERTY(EditAnywhere, Category = "Setup")
+	TSubclassOf<AProjectile> ProjectileType;
 
 	
 };

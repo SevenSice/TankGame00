@@ -59,6 +59,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
 		0,
 		0,
 		ESuggestProjVelocityTraceOption::DoNotTrace
+
 	);
 	if (bHaveSolution)
 	{
@@ -67,6 +68,18 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
 		Turrent->MoveTurret(FireVector.GetSafeNormal());
 		Barrel->MoveBarrel(FireVector.GetSafeNormal());
 	}
-	
+}
+
+void UTankAimingComponent::Fire()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Fire!"));
+	if (Turrent==nullptr||ProjectileType==nullptr){return;}
+
+	AProjectile *Projectile = GetWorld()->SpawnActor<AProjectile>(
+		ProjectileType,
+		Barrel->GetSocketLocation(FName("FireLocation")),
+		Barrel->GetSocketRotation(FName("FireLocation"))
+		);
+	Projectile->LanchProjectile(LaunchSpeed);
 }
 
