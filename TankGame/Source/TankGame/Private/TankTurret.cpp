@@ -20,7 +20,7 @@ void UTankTurret::MoveTurret(FVector AimDirection)
 	float ReletiveSpeed = FMath::Clamp<float>(ChangeYaw, -1, 1);
 	//每帧旋转的角度
 	float RotationTickChange = ReletiveSpeed * MaxDegreesPerSecond*GetWorld()->DeltaTimeSeconds;
-	float NewRotationYaw = RotationTickChange + CurrentRotation.Yaw;
+	float NewRotationYaw = RotationTickChange + RelativeRotation.Yaw;
 
 	SetRelativeRotation(FRotator(0, NewRotationYaw, 0));
 }
